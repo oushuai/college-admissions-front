@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="getList();"></button>
+		<input type="text" id="userId" />
+		<input type="text" id="username" value="aaa"/>
+		<input type="text" id="password" />
+
+	</body>
+	<script src="../../js/axios.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<!-- <script src="../../js/public.js">></script> -->
+	<script>
+		// axios.defaults.baseURI = 'http://127.0.0.1:80';
+		const instance = axios.create({
+		  baseURL: 'http://127.0.0.1:80'
+		});
+	var userId = document.getElementById('userId').text;
+	 
+		function getList() {
+			var usernameValue = $("#userId").val();
+		
+			instance.get('/test/user/list', {
+			 
+			  })
+			  .then(function (response) {
+				  // console.log(response.data.data[0].userId);
+				  usernameValue = response.data.data[0].userId;
+				  console.log(usernameValue);
+				 $("#userId").val(usernameValue);
+				    console.log($("#userId").val());
+		
+				   // $("#userId").value=usernameValue;
+			//	   console.log($("#userId").value);
+				  
+				  // $("#userId").innerHTML=usernameValue;
+				  
+				//  console.log($("#userId").value);
+			 //document.getElementById("userId").value=usernameValue;
+			
+			    console.log(response);
+			  })
+			  .catch(function (error) {
+			    console.log(error);
+			  });
+		}
+		
+	</script>
+</html>
