@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>学校详情</title>
+		<meta name="description" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
+		<meta name="keywords" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
+		<link rel="stylesheet" type="text/css" href="../../js/layui/css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../../js/layui/css/modules/code.css">
+		<link rel="stylesheet" type="text/css" href="../../js/layui/css/modules/laydate/default/laydate.css">
+	</head>
+	<body>
+		<div id="magicalDragScene" class="mc-root mc-ui-absolute-pane" style="height: 907px;">   
+		 <div class="layui-fluid layui-bg-white" style="left: 1.02041%; top: 0%; width: 97.9611%; height: 1368.01px; padding: 1px; position: absolute;">    
+		 <div class="layui-row">        
+		 <div class="layui-col-xs12 mc-ui-flex-center" style="width: 100%; height: 46px; margin-bottom: 4px; background-color: rgb(26, 145, 133);">         
+		 <label class="layui-form-label mc-ui-flex-center" style="font-size: 15px; font-weight: bolder; word-spacing: 2px; text-align: center; direction: ltr; text-indent: 0px; color: rgb(244, 241, 241);">
+		 赣州中专网</label>  
+		 </div>        </div>  
+		 <ul class="layui-nav layui-bg-green" lay-shrink="all">   
+		 <li class="layui-nav-item">             
+		 <a style="color: rgb(255, 255, 255); font-size: 15px;">院校排名</a>    
+		 </li>        
+		 <li class="layui-nav-item">  
+		 <a style="color: rgb(255, 255, 255); font-size: 15px;" href="javascript:;">专业排名</a>            </li>            <li id="uuid46cecb9c-8087-462a-af1a-8b4d2fd111f2" class="layui-nav-item">           
+		 <a style="color: rgb(255, 255, 255); font-size: 15px;" href="javascript:;">招生问答</a>            </li>     
+		 <li id="uuid869e90bf-fba8-4d20-ac4e-c4c35640fe53" class="layui-nav-item"></li>        
+		 <li id="uuidb7826605-54be-42b9-a2bf-b6a3408f2f99" class="layui-nav-item"></li>        </ul>    
+		 <div class="layui-row" style="height: 23.0114px; top: 0px; margin-top: 8px;">       
+		 <div class="layui-col-xs12 mc-ui-flex-start layui-col-lg12" style="height: 21px; background-color: rgb(255, 247, 247);">     
+		 <span class="layui-breadcrumb">          
+		 <a href="../index.html">首页</a>                  
+		 <a>招生学校</a>        
+		 <a></a>     
+		 </span>            </div>        </div>     
+		 <div class="layui-row" style="margin-top: 10px; height: 1212px;">           
+		 <div class="layui-col-xs12" style="height: 311px;">        
+		 <img class="college-img"  style="width: 100%; height: 302px;" src="" />            </div>     
+		 <div id="college-detail" class="layui-col-xs12" style="height: 889px;">        
+<!-- 		 <p style="height: 484px;">                    赣州华坚科技职业学校以拥有资产10亿、年产值30亿元的全球规模最大的制鞋企业——华坚集团投资主办，经教育行政主管部门批准的一所全日制中等职业学校。                    学校坐落于赣州经济技术开发区，占地面积90200平方米，使用面积为125609.97平方米，校舍建筑面积为97861.84平方米，其中，两幢教学楼,建筑面积23124.74平方米，一幢实训楼，建筑面积30507.7平方米，学生.教职工公寓楼13幢,建筑面积44229.4平方米，1.4万平方米的塑胶跑道标准田径场，6800平方米的篮球场。                    学校现有仪器设备及固定资产3000万余元，教学大楼均配置中央空调，多媒体教学设施,学生公寓空调，热水器等配置一应俱全，学校运动设施齐全，环境优美。                    学校地址：赣州华坚科技学校地处赣州经济技术开发区迎宾大道26号                    学校招生办幸主任:183-0797-9435（微信同号）                </p>   
+ -->		 
+ 
+		 </div>        </div>    </div></div>
+		       <script type="text/javascript" src="../../js/jquery.min.js"></script>
+		       <script type="text/javascript" src="../../js/layui/layui.all.js"></script>
+		       <script src="../../js/axios.js"></script>
+				<script>
+				//以下脚本为标签属性转换成layui组件的还原过程//调试:打开浏览器控制台(F12),在代码中某行增加 debugger 即可调试
+				var $ = layui.jquery, laytpl = layui.laytpl, laydate = layui.laydate, form = layui.form, layedit = layui.layedit, slider = layui.slider, element = layui.element, colorpicker = layui.colorpicker, upload = layui.upload, rate = layui.rate, carousel = layui.carousel, table = layui.table, flow = layui.flow;
+				var magicalDragLayuiUtil = {    
+					rebuildLayUiControls: function () {     
+						var _t = this;     
+				//日期     
+				$(".magicalcoder-laydate").each(function (idx, item) {            laydate.render(_t.iteratorAttr({                elem: item            }, item));        })   
+				//富文本    
+				$(".magicalcoder-layedit").each(function (idx, item) {            var mcDataId = $(item).attr("id");            if (mcDataId) {                layedit.build(mcDataId, {                    height: 300                });            }        })     
+				//外键      
+				$(".magicalcoder-foreign-select2").each(function (idx, item) {            var mcDataId = $(item).attr("id");            if (mcDataId) {                $("#" + mcDataId).select2({                    allowClear: true,                    width: "150px",                    delay: 500,                });            }        })      
+				//颜色选择器  
+				$(".magicalcoder-color-picker").each(function (idx, item) {            colorpicker.render(_t.iteratorAttr({                elem: $(item)}, item));        })     
+				//上传组件    
+				$(".magicalcoder-layupload").each(function (idx, item) {            upload.render(_t.iteratorAttr({                elem: $(item)}, item));        })   
+				//滑块  
+				$(".magicalcoder-slider").each(function (idx, item) {            slider.render(_t.iteratorAttr({                elem: $(item)}, item));        })      
+				//评分     
+				$(".magicalcoder-rate").each(function (idx, item) {            rate.render(_t.iteratorAttr({                elem: $(item)}, item));        })    
+				//轮播  
+				$(".layui-carousel").each(function (idx, item) {            carousel.render(_t.iteratorAttr({                elem: $(item)}, item));        })      
+				//流加载     
+				$(".magicalcoder-flow").each(function (idx, item) {            flow.load(_t.iteratorAttr({                elem: $(item)}, item));        })      
+				//代码   
+				$(".magicalcoder-code").each(function (idx, item) {            layui.code(_t.iteratorAttr({                elem: $(item)}, item));        })       
+				//弹窗     
+				$(".magicalcoder-layer").each(function (idx, item) {       
+				//先隐藏起来        
+				$(this).next().hide();            $(this).click(function () {                var config = _t.iteratorAttr({                    elem: $(item)}, item);                var type = config.type;                if (type + '' == 1) {                    config.content = $(this).next();                   if (!config.content.hasClass("magicalcoder-layer-content")) {                        config.content = config.content.find(".magicalcoder-layer-content")                    }                }                if (config.btn) {                    config.btn = config.btn.split(",")                }                if (config.area) {                    config.area = config.area.split(",")                }                layer.open(config)            })        })    
+				//动态表格 我们单独封装了layui-table的初始化方式 至于数据排序 返回格式 等操作请根据你的具体环境自行封装    
+				$(".magicalcoder-table").each(function (idx,            item) {            var cols = [];          
+				//读取列配置     
+				$(this).find(".magicalcoder-table-th").each(function (i, th) {          
+					cols.push(_t.iteratorAttr({               
+						title: $(this).text()}, th));  
+								  })
+						var tableConfig = _t.iteratorAttr({          
+							elem: $(item),                cols: [cols]},      
+									  item);       
+				//初始化表格 至于返回的数据格式 您可以根据自己的系统自行改造 这里仅做一个示例 参考js\\\\data\\\\list.json    
+		        table.render(tableConfig);        })    
+				//部分组件初始化      
+				element.init();       
+				//表单初始化    
+				form.render();    },  
+				//将标签上的属性 转换成layui函数初始化时的参数名:参数值  
+				iteratorAttr: function (renderConfig, dom) {        var attrs = dom.attributes;        for (var i = 0; i < attrs.length; i++) {            var attr = attrs[i];            var name = attr.name;            var value = attr.value;            if (name.indexOf("mc-") === 0) {                name = name.replace("mc-attr-", '');                name = name.replace("mc-event-", '');                if (name.indexOf('str-') === 0) {                    name = name.replace('str-', '');                } else if (name.indexOf('bool-') === 0) {                    name = name.replace('bool-', '');                    value == 'true' || value === '' ? value = true: value = value;                    value == 'false' ? value = false: value = value;                } else if (name.indexOf('num-') === 0) {                    name = name.replace('num-', '');                    if (value !== '' && !isNaN(value)) {                        value = parseFloat(value);                    }                } else if (name.indexOf('json-') === 0) {                    name = name.replace('json-', '');                    if (value !== '') {                        value = JSON.parse(value);                    }                }                renderConfig[this.htmlAttrNameToTuoFeng(name)] = value;            }        }        return renderConfig;    },
+				//user-name -> userName html上的标签名转换成驼峰名称  
+				htmlAttrNameToTuoFeng: function (name) {      
+					var arr = name.split("-");    
+						var newArr = []    
+							for (var i = 0; i < arr.length; i++) {        
+								if (i != 0) {          
+									if (arr[i] != '') {     
+										newArr.push(this.firstCharToUpLower(arr[i]));         
+											   }            } else {
+												   newArr.push(arr[i]);        
+													   }        }       
+														return newArr.join('');  
+														  },   
+				//首字母大写 
+				firstCharToUpLower: function (name) {     
+					var arr = name.split("");     
+					   arr[0] = arr[0].toUpperCase();  
+							 return arr.join('');   
+							  },}
+							  magicalDragLayuiUtil.rebuildLayUiControls();
+				//echarts自动初始化
+			//	new McECharts().render();
+				</script>
+				<script>
+					var aValue = $("layui-breadcrumb a:eq(2)").text();
+					const instance = axios.create({
+						baseURL: 'http://127.0.0.1:80'
+					});
+					//拿到url里面的id
+					function getQueryVariable(variable)
+								{
+								       var query = window.location.search.substring(1);
+								       var vars = query.split("&");
+								       for (var i=0;i<vars.length;i++) {
+								               var pair = vars[i].split("=");
+								               if(pair[0] == variable){return pair[1];}
+								       }
+								       return(false);
+								};
+								function getUrl(){
+									var id = getQueryVariable("id");
+									console.log(id);
+									var url = window.location.href;
+									console.log(url);
+									return id;
+								};
+								function getinfo(){
+									
+									var id = getUrl();
+									instance.get('/college/school/'+id,{
+														 proxy: {
+														    host: '127.0.0.1',
+														    port: 80
+														  }
+														  
+									}).then(function (response) {
+									$(".layui-breadcrumb a:eq(2)").text(response.data.name);		
+													  console.log($(".layui-breadcrumb a:eq(2)").innerHTML);
+												$("#college-detail").append(response.data.introduction);			  
+											console.log(response.data.name);
+											$(".college-img").attr("src",response.data.coverImg)
+											});
+								};
+								window.onload = getinfo();
+				</script>
+	</body>
+</html>
