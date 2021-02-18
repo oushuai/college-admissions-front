@@ -78,11 +78,17 @@
 			if(value.questionAnswers.length!=0){
 				console.log(index);
 				if(index>0){
-				$(".layui-table").append($(".layui-table tbody")[index-1].outerHTML);
+				$(".layui-table:eq(" + (index-1)+ ")").after($(".layui-table")[0].outerHTML);
 				}
 			$(".layui-table tbody:eq(" + index + ") tr a").attr("href",href+"?id="+value.id);
 			$(".layui-table tbody tr:even td a:eq(" + index + ")").text(value.qa);
-			$(".layui-table tbody tr:odd td a:eq(" + index + ")").text(value.questionAnswers[0].qa);	
+			var qa = value.questionAnswers[0].qa;
+			if(qa.length>50){
+				qa=qa.substring(0,60)+"...\t"+value.createDate;
+			}else{
+				qa=qa+"...\t"+value.createDate;
+			}
+			$(".layui-table tbody tr:odd td a:eq(" + index + ")").text(qa);	
 			}		
 		
 			};
