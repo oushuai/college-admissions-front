@@ -42,21 +42,21 @@
 		       </div> 
 		       <div class="layui-card-body" style="height: 137.011px;"> 
 		        <table class="layui-table"> 
-		         <tbody> 
+		         <tbody class="tt"> 
 		          <tr> 
-		           <td style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">老年人服务与管理</a> </td> 
-		           <td id="uuid70b50471-8b34-4f96-8597-243c3f1f6d94" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">美容美体</a> </td> 
-		           <td id="uuidd97e05e1-0ba1-4b96-a6c0-adef2e1fadee" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">铁道运输管理</a> </td> 
+		           <td style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"><span></span></a> </td> 
+		           <td id="uuid70b50471-8b34-4f96-8597-243c3f1f6d94" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
+		           <td id="uuidd97e05e1-0ba1-4b96-a6c0-adef2e1fadee" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
 		          </tr> 
-		          <tr id="uuide9a9712a-0b4b-4dd7-8bbd-2198b40022dd"> 
-		           <td style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">计算机应用</a> </td> 
-		           <td id="uuide675c634-010f-490f-a87e-ac127f3b2753" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">学前教育</a> </td> 
-		           <td id="uuid556ad34a-14c0-4818-a1d1-6549102de5a6" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">UI设计</a> </td> 
+		         <tr id="uuide9a9712a-0b4b-4dd7-8bbd-2198b40022dd"> 
+		           <td style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
+		           <td id="uuide675c634-010f-490f-a87e-ac127f3b2753" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
+		           <td id="uuid556ad34a-14c0-4818-a1d1-6549102de5a6" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
 		          </tr> 
 		          <tr id="uuidfe354fa7-397e-4ac2-a010-008e9281b68b"> 
-		           <td style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">汽车应用与维修</a> </td> 
-		           <td id="uuid002dd235-dbf5-4633-a6f2-8455fcf23d74" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">新能源汽车</a> </td> 
-		           <td id="uuid7de8f177-3ba4-4064-9fc5-873f742f7403" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="http://www.magicalcoder.com">高铁乘务</a> </td> 
+		           <td style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
+		           <td id="uuid002dd235-dbf5-4633-a6f2-8455fcf23d74" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
+		           <td id="uuid7de8f177-3ba4-4064-9fc5-873f742f7403" style="width: 29.519%; font-weight: lighter; font-size: 2px;"> <a style="font-weight: lighter;" href="#"></a> </td> 
 		          </tr> 
 		         </tbody> 
 		        </table> 
@@ -162,15 +162,23 @@
 				});
 			
 				function collegeList(value, index, array) {
-					if(index>0){
-					 $(".school-profession:eq(" + (index-1)+ ")").after($(".school-profession")[0].outerHTML);
-					}
-					console.log(value.name);
+					// if(index>0){
+					//  $(".school-profession:eq(" + (index-1)+ ")").after($(".school-profession")[0].outerHTML);
+					// }
 					$(".school-name span:eq(" + index + ")").text(value.name);
 					
-					// $(".txt:eq(" + index + ") div div:eq(0) label").text(NoToChinese(index+1)+"、"+ value.name);
-					// $(".txt:eq(" + index + ")  div div:eq(1) p").text(value.shortIntroduction);
-					// $(".txt:eq(" + index + ")  div div:eq(2) img").attr("src", value.coverImg);		
+				//	$(".tt:eq(" + index+ ")" + " tr td a span").text(index);
+					
+					for( i=0;i<value.professionList.length;i++){
+						if(i<9){
+					//		console.log("i:"+i);
+					//	console.log("/:"+parseInt((i+1)/3));	
+					//	console.log("%:"+((i+1)%3-1));	
+				$(".tt:eq(" + index+ ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").text(value.professionList[i].name);
+				$(".tt:eq(" + index+ ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").attr("href","detail.html?id="+value.professionList[i].id);
+							//$("tbody tr:eq(" + i<3?0:((i+1)/3) + ")" + "td:eq(" + i<3?i:((i+1)%3) + ")").text(value.professionList[i].name);
+						}
+					}	
 				};
 			
 				function getCollegeList() {
@@ -179,7 +187,11 @@
 			
 						})
 						.then(function(response) {
-				
+							for(i=1;i<response.data.rows.length;i++){
+						
+						 $(".school-profession:eq(" + (i-1)+ ")").after($(".school-profession")[0].outerHTML);
+						
+							}
 							response.data.rows.forEach(collegeList);
 						})
 						.catch(function(error) {

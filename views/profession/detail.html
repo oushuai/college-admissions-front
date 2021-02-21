@@ -101,6 +101,7 @@
 												  }
 												  
 							}).then(function (response) {
+								console.log(response.data.school);
 							 $(".layui-breadcrumb a:eq(2)").text(response.data.school.name);
 							$("#professionName").text(response.data.name);
 							$(".layui-col-xs12 p").text(response.data.processDescribe);
