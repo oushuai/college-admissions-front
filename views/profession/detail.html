@@ -21,8 +21,8 @@
 		     </div> 
 		    </div> 
 		    <ul class="layui-nav layui-bg-green" lay-shrink="all"> 
-		     <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="../college/index.html">院校排名</a> </li> 
-		     <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="javascript:;">专业排名</a> </li> 
+		     <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="../college/rank.html">院校排名</a> </li> 
+		     <li class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="rank.html">专业排名</a> </li> 
 		     <li id="uuid46cecb9c-8087-462a-af1a-8b4d2fd111f2" class="layui-nav-item"> <a style="color: rgb(255, 255, 255); font-size: 15px;" href="../qa/index.html">招生问答</a> </li> 
 		     <li id="uuid869e90bf-fba8-4d20-ac4e-c4c35640fe53" class="layui-nav-item"></li> 
 		     <li id="uuidb7826605-54be-42b9-a2bf-b6a3408f2f99" class="layui-nav-item"></li> 
@@ -103,8 +103,10 @@
 							}).then(function (response) {
 								console.log(response.data.school);
 							 $(".layui-breadcrumb a:eq(2)").text(response.data.school.name);
+							 $(".layui-breadcrumb a:eq(2)").attr("href","../college/college.html?id="+response.data.school.id);
 							$("#professionName").text(response.data.name);
-							$(".layui-col-xs12 p").text(response.data.processDescribe);
+							var processDescribe = response.data.processDescribe.replace(/<[^>]+>/g,"");
+							$(".layui-col-xs12 p").text(processDescribe);
 							 		$("#professionImg").attr("src",response.data.processImg);
 									});
 						};
