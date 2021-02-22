@@ -17,16 +17,19 @@
 		   <div class="layui-fluid layui-bg-white" style="left: 0.680272%; top: 0%; width: 97.2789%; height: 1368.01px; padding: 1px; position: absolute;"> 
 		    <div class="layui-row" style="height: 679px;"> 
 		     <div class="layui-col-xs12 mc-ui-flex-center" style="height: 250px;"> 
-		      <img style="width:50%;" src="/upload/0f0264dc-b526-4935-ad5a-6760aad1f797.jpg" /> 
+		      <img style="width:50%;" src="../../upload/0f0264dc-b526-4935-ad5a-6760aad1f797.jpg" /> 
 		     </div> 
 		     <div class="layui-col-xs12" style="height: 721px;"> 
-		      <div class="layui-row" style="height: 691px; font-weight: lighter;"> 
+		      <div class="layui-row" style="height: 691px; font-weight: lighter;">
+				  <table>
+				  	<form action="" method="POST">
 		       <div class="layui-col-xs12 mc-ui-flex-center" style="height: 45px;"> 
 		        <label class="layui-form-label mc-ui-flex-center" style="width: 72.9682%; height: 16px; font-weight: bold; color: rgb(245, 6, 6); font-size: 19px;">江西省中等职业学校学生报名表</label> 
 		       </div> 
 		       <div class="layui-col-xs12 mc-ui-flex-center" style="height: 45px;"> 
 		        <span class="mc-ui-geometry-char" style="height: 20px; width: 233px; color: rgb(255, 0, 0); font-size: 15px;">(温馨提示：带*号的是必填项)</span> 
 		       </div> 
+			   <!-- <table> -->
 		       <div class="layui-col-xs12" style="height: 581px;"> 
 		        <div class="layui-row" style="height: 43px;"> 
 		         <div class="layui-col-md6 layui-col-xs3 mc-ui-absolute-pane" style="height: 42px;"> 
@@ -95,7 +98,12 @@
 		         </div> 
 		         <div class="layui-col-md6 layui-col-xs9 mc-ui-flex-start mc-ui-absolute-pane" style="height: 42px;"> 
 		          <div class="magical-coder-tmp mc-dragging-select" style="position: absolute; left: 1%; top: 5%; width: 49.1726%;"> 
-		           <select style="" name="studentType"> <option value="uuid4c120b03-5474-48ee-b34e-b43587d92452">选项A</option> <option value="uuidbf8843f7-8f1b-4967-8265-891600100b31">选项B</option> </select> 
+		           <select style="" name="studentType"> 
+				   <option value="-1">-请选择-</option>
+				   <option value="0">初中毕业生</option> 
+				   <option value="1">高中毕业生</option>
+				   <option value="2">其他</option>
+					</select> 
 		          </div> 
 		         </div> 
 		        </div> 
@@ -125,12 +133,16 @@
 		        </div> 
 		        <div id="uuid3451970d-70b2-4719-829f-bdae6f8685d3" class="layui-row" style="height: 67px;"> 
 		         <div class="layui-col-md6 mc-ui-absolute-pane layui-col-xs12" style="height: 42px;"> 
-		          <a class="layui-btn layui-btn-lg" style="position: absolute; left: 40.7473%; top: -2.5%; width: 19.0813%;">提交</a> 
+		          <a class="layui-btn layui-btn-lg" style="position: absolute; left: 40.7473%; top: -2.5%; width: 19.0813%;" onclick="add();">提交</a> 
 		         </div> 
 		        </div> 
 		       </div> 
 		      </div> 
-		     </div> 
+		   
+			   	
+			   </form>
+		   </table>
+			 </div> 
 		    </div> 
 		   </div>
 		  </div>
@@ -143,7 +155,18 @@
 				baseURL: 'http://127.0.0.1:80'
 			});
 				
-				
+				function add(){
+					instance.post('/college/applyInfo/add', {
+									
+							})
+							.then(function(response) {
+							//	response.data.rows.forEach(collegeList1);
+							console.log(response.data.rows);
+							})
+							.catch(function(error) {
+								console.log(error);
+							});
+				}
 				$(function () {
 				    $("#schoolId").change(function () {
 						$("#professionId").html("<option value=\"-1\">-请选择-</option>");
