@@ -22,7 +22,7 @@
 		     <div class="layui-col-xs12" style="height: 721px;"> 
 		      <div class="layui-row" style="height: 691px; font-weight: lighter;">
 				  <table>
-				  	<form action="" method="POST">
+				  	<form action="http://localhost/college/applyInfo/add" method="POST" id="apply">
 		       <div class="layui-col-xs12 mc-ui-flex-center" style="height: 45px;"> 
 		        <label class="layui-form-label mc-ui-flex-center" style="width: 72.9682%; height: 16px; font-weight: bold; color: rgb(245, 6, 6); font-size: 19px;">江西省中等职业学校学生报名表</label> 
 		       </div> 
@@ -44,8 +44,8 @@
 		          <span class="mc-ui-geometry-char mc-ui-flex-end" style="height: 22px; width: 43px; position: absolute; left: 61.7021%; top: 17.5%; font-size: 15px;">性别 *</span> 
 		         </div> 
 		         <div class="layui-col-md6 layui-col-xs9 mc-ui-flex-start mc-ui-absolute-pane" style="height: 42px;"> 
-		          <span class="magical-coder-tmp" style="position: absolute; left: 0.472813%; top: 0%; width: 18.1176%;"> <input name="sex" title="男" style="" type="radio" value="1" /></span> 
-		          <span class="magical-coder-tmp" style="position: absolute; left: 35.6974%; top: 0%; width: 14.1176%;"> <input name="sex" title="女" style="" type="radio" value="0" /></span> 
+		          <span class="magical-coder-tmp" style="position: absolute; left: 0.472813%; top: 0%; width: 18.1176%;"> <input name="sex" title="男" style="" type="radio" value="0" /></span> 
+		          <span class="magical-coder-tmp" style="position: absolute; left: 35.6974%; top: 0%; width: 14.1176%;"> <input name="sex" title="女" style="" type="radio" value="1" /></span> 
 		         </div> 
 		        </div> 
 		        <div id="uuid4b621f6c-dfab-4744-b9f9-a682acdd85cc" class="layui-row" style="height: 43px;"> 
@@ -156,16 +156,17 @@
 			});
 				
 				function add(){
-					instance.post('/college/applyInfo/add', {
+					$("#apply").submit(); 
+					// instance.post('/college/applyInfo/add', {
 									
-							})
-							.then(function(response) {
-							//	response.data.rows.forEach(collegeList1);
-							console.log(response.data.rows);
-							})
-							.catch(function(error) {
-								console.log(error);
-							});
+					// 		})
+					// 		.then(function(response) {
+					// 		//	response.data.rows.forEach(collegeList1);
+					// 		console.log(response.data.rows);
+					// 		})
+					// 		.catch(function(error) {
+					// 			console.log(error);
+					// 		});
 				}
 				$(function () {
 				    $("#schoolId").change(function () {
