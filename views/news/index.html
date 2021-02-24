@@ -33,7 +33,7 @@
 		 <div class="layui-col-xs12 mc-ui-flex-start layui-col-lg12" style="height: 21px; background-color: rgb(255, 247, 247);">     
 		 <span class="layui-breadcrumb">          
 		 <a href="../index.html">首页</a>                  
-		 <a href="index.html">招生问答</a>             
+		 <a href="index.html">招生资讯</a>             
 		 </span>            </div>        </div>  
 		    <div class="layui-row" style="height: 767px; margin-top: 10px;"> 
 		     <div class="layui-col-xs12" style="height: 734px;"> 
@@ -74,21 +74,20 @@
 				var vars = href.split("?");
 					       href=vars[0];
 			
-			if(value.questionAnswers.length!=0){
 				console.log(index);
 				if(index>0){
 				$(".layui-table:eq(" + (index-1)+ ")").after($(".layui-table")[0].outerHTML);
 				}
 			$(".layui-table tbody:eq(" + index + ") tr a").attr("href",href+"?id="+value.id);
-			$(".layui-table tbody tr:even td a:eq(" + index + ")").text(value.qa);
-			var qa = value.questionAnswers[0].qa;
+			$(".layui-table tbody tr:even td a:eq(" + index + ")").text(value.contentTitle);
+			var qa = value.newsContent.replace(/<[^>]+>/g,"");
 			if(qa.length>50){
 				qa=qa.substring(0,60)+"...\t"+value.createDate;
 			}else{
 				qa=qa+"...\t"+value.createDate;
 			}
 			$(".layui-table tbody tr:odd td a:eq(" + index + ")").text(qa);	
-			}		
+					
 		
 			};
 		  	
@@ -98,7 +97,7 @@
 				// $(".layui-table").append($(".layui-table tbody"));
 		  // 		//	var usernameValue = $("#userId").val();
 		  	
-		  		instance.post('/college/answer/web/list', {
+		  		instance.post('/college/news/list', {
 		  	
 		  			})
 		  			.then(function(response) {

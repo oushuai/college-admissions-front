@@ -5,7 +5,7 @@
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>问答详情</title>
+		<title>资讯详情</title>
 		<meta name="description" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
 		<meta name="keywords" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
 		<link rel="stylesheet" type="text/css" href="../../js/layui/css/layui.css">
@@ -33,7 +33,7 @@
 		 <div class="layui-col-xs12 mc-ui-flex-start layui-col-lg12" style="height: 21px; background-color: rgb(255, 247, 247);">     
 		 <span class="layui-breadcrumb">          
 		 <a href="../index.html">首页</a>                  
-		 <a href="index.html">招生问答</a>        
+		 <a href="index.html">招生资讯</a>        
 		 <a>详细内容</a>     
 		 </span>            </div>        </div>  
 			 <div class="content" style="width: 98%">
@@ -69,20 +69,25 @@
 					function getinfo(){
 						
 						var id = getUrl();
-						instance.get('/college/answer/web/info/'+id,{
+						instance.get('/college/news/'+id,{
 											 proxy: {
 											    host: '127.0.0.1',
 											    port: 80
 											  }
 											  
 						}).then(function (response) {
-						$(".content h1").text(response.data.rows[0].qa);
+						// $(".content h1").text(response.data.rows[0].qa);
+						// console.log(response.data);
+						// 		if(response.data.rows[0].questionAnswers.length!=0){
+						// 			$(".content p span").text(response.data.rows[0].questionAnswers[0].qa);
+						// 		}else{
+						// 		$(".content p span").text("这个问题等待老师进行回复！");	
+						// 		}
+						$(".content h1").text(response.data.contentTitle);
 						console.log(response.data);
-								if(response.data.rows[0].questionAnswers.length!=0){
-									$(".content p span").text(response.data.rows[0].questionAnswers[0].qa);
-								}else{
-								$(".content p span").text("这个问题等待老师进行回复！");	
-								}
+								var content =response.data.newsContent.replace(/<[^>]+>/g,"");
+									$(".content p span").text(content);
+								
 								});
 					};
 					window.onload = getinfo();
