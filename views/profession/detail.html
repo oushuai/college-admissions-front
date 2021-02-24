@@ -8,9 +8,11 @@
 		<title>专业详情</title>
 		<meta name="description" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
 		<meta name="keywords" content="MagicalCoder,表单布局器,基于jquery,Vue的可视化拖拽布局器">
-		<link rel="stylesheet" type="text/css" href="../../js/layui/css/layui.css">
-		<link rel="stylesheet" type="text/css" href="../../js/layui/css/modules/code.css">
-		<link rel="stylesheet" type="text/css" href="../../js/layui/css/modules/laydate/default/laydate.css">
+<link rel="stylesheet" type="text/css" href="../../js/layui1/code.css">
+<link rel="stylesheet" type="text/css" href="../../js/layui1/laydate.css">
+<link rel="stylesheet" type="text/css" href="../../js/layui1/layer.css">
+<link rel="stylesheet" type="text/css" href="../../js/layui1/layui.css">
+<link rel="stylesheet" type="text/css" href="../../js/layui1/magicalcoder.css">
 	</head>
 	<body>
 		 <div id="magicalDragScene" class="mc-root mc-ui-absolute-pane" style="height: 907px;"> 
@@ -53,7 +55,7 @@
 		          <label class="layui-form-label mc-ui-flex-start" id="year" style="width: 87.9167%; height: 33px; font-weight: bold;"></label> 
 		         </div> 
 		         <div class="layui-col-xs12 mc-ui-flex-start" style="height: 62px; padding-left: 13px;"> 
-		          <a class="layui-btn">在线报名</a> 
+		          <a class="layui-btn" href="../apply/index.html">在线报名</a> 
 		         </div> 
 		        </div> 
 		       </div> 
@@ -105,8 +107,8 @@
 							 $(".layui-breadcrumb a:eq(2)").text(response.data.school.name);
 							 $(".layui-breadcrumb a:eq(2)").attr("href","../college/college.html?id="+response.data.school.id);
 							$("#professionName").text(response.data.name);
-							var processDescribe = response.data.processDescribe.replace(/<[^>]+>/g,"");
-							$(".layui-col-xs12 p").text(processDescribe);
+							var processDescribe = response.data.processDescribe;
+							$(".layui-col-xs12 p").html(processDescribe);
 							$("#year").text('休学年限：'+response.data.year+'年');
 							 		$("#professionImg").attr("src",response.data.processImg);
 									});
