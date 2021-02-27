@@ -100,18 +100,17 @@
 									console.log('majoy',obj.professionList[j]);
 									let temp = obj.professionList[j];
 									if(temp!=''&&temp)
-									majoy+=`<div style="color:#666666;height:30px;float:left;width:30%;text-align: center;line-height: 30px;padding:5px;border:#e6e6e6 1px solid"><a href="detail.html?id=${temp.id}">${temp.name}</a></div>`
+									majoy+=`<div style="color:#666666;height:30px;float:left;width:30%;text-align: center;line-height: 30px;padding:5px;border:#e6e6e6 1px solid"><a href="../profession/detail.html?id=${temp.id}">${temp.name}</a></div>`
 								}
 								if(obj.professionList.length>0)
-								html+= `<div class="layui-col-xs12 school-profession" id="card" > 
+								html+= `<div class="layui-col-xs12 school-profession" id="card" style="height: 210px;"> 
 										<div class="layui-card"> 
 										   <div class="layui-card-header mc-ui-flex-center school-name" style="background-color: rgb(26, 145, 133); color: white; font-weight: bold;">
 											 <span>${obj.name}</span>
 										   </div> 
-										   <div class="layui-card-body" style="height: 50px;width:95%;">
-											`+majoy+
-											`</div> 
-											<div style="padding-bottom:10px;width:90%;float:left"></div>
+										   <div class="layui-card-body" style="height: 137.011px;width:95%;">
+											`+majoy+`
+										   </div> 
 										  </div> 	
 										  </div> 	
 										  </div> 	
