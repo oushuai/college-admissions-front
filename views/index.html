@@ -48,10 +48,10 @@
 					<div class="layui-carousel" style="width: 99.8189%; height: 250px; top: 6px;" mc-attr-bool-autoplay="true" mc-attr-num-interval="3000" mc-attr-str-width="100%" mc-attr-str-anim="default" mc-attr-str-arrow="hover" mc-attr-str-indicator="inside" mc-attr-num-height="250px">
 							<div class="magicalcoder-carousel-items" style="top: 7px; width: 100%; height: 243.011px;" carousel-item>
 								<div class="magicalcoder-carousel-item mc-ui-flex-center" style="padding-right: 0px; margin-right: 4px;">
-									<img style="width: 100.002%; height: 229px;" src="../upload/02cb4691-a1be-499c-ab68-5a4b4bd7fe46.jpg"/>
+									<img class="aa" style="width: 100.002%; height: 229px;" src=""/>
 								</div>
 								<div class="magicalcoder-carousel-item mc-ui-flex-center">
-									<img style="width: 99.8186%; height: 230px;" src="../upload/4b37b32b-0408-4678-a07e-5ba81fb5980b.jpg"/>
+									<img class="aa" style="width: 99.8186%; height: 230px;" src=""/>
 								</div>
 							</div>
 						</div>
@@ -182,6 +182,7 @@
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/layui1/layui.all.js"></script>
 		<script src="../js/axios.js"></script>
+		<script src="../js/config.js" ></script>
 		<script>
 		layui.use('carousel', function(){
 		  var carousel = layui.carousel;
@@ -197,13 +198,11 @@
 		
 
 		<script>
-			// axios.defaults.baseURI = 'http://127.0.0.1:80';
 			const instance = axios.create({
-				baseURL: 'http://127.0.0.1:80'
+				baseURL: "http://"+globalConfig.host+":"+globalConfig.port
 			});
 
 			function collegeList(value, index, array) {
-				// $("#college").children("div").children("img:eq("+index+")").attr("src",value.lego);
 				$("#college div a img:eq(" + index + ")").attr("src", value.lego);
 				$("#college div a div:eq(" + index + ")").text(value.name);
 				var href = $(".college-img:eq(" + index + ")").attr('href');
@@ -225,6 +224,26 @@
 						console.log(error);
 					});
 			};
+			function focusList(value, index, array) {
+				if(index<2){
+					$(".aa:eq(" + index + ")").attr("src", value.img);
+				}
+				
+			};
+			function getFocusList() {
+				//	var usernameValue = $("#userId").val();
+			
+				instance.post('/college/focus/list', {
+			
+					})
+					.then(function(response) {
+			
+						response.data.rows.forEach(focusList);
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+			};
 			function QAList(value, index, array) {
 				// $("#college").children("div").children("img:eq("+index+")").attr("src",value.lego);
 				var rawQA = value.contentTitle;
@@ -234,7 +253,6 @@
 				$(".layui-table tbody tr td a:eq(" + index + ")").attr("href",href+"?id="+value.id);
 			};
 			function getQAList() {
-				//	var usernameValue = $("#userId").val();
 
 				instance.post('/college/news/list', {
 
@@ -250,6 +268,7 @@
 			};
 			window.onload = getCollegeList();
 			window.onload = getQAList();
+			window.onload = getFocusList();
 		</script>
 	</body>
 </html>

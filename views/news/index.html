@@ -66,17 +66,18 @@
 		  <script type="text/javascript" src="../../js/jquery.min.js"></script>
 		  <script type="text/javascript" src="../../js/layui/layui.all.js"></script>
 		  <script src="../../js/axios.js"></script>
+		  <script src="../../js/config.js" ></script>
 		  <script>
 		  	var aValue = $("layui-breadcrumb a:eq(2)").text();
 		  	const instance = axios.create({
-		  		baseURL: 'http://127.0.0.1:80'
+		  		baseURL: "http://"+globalConfig.host+":"+globalConfig.port
 		  	});
 			function qaList(value, index, array) {
 				var href = $(".layui-table tbody tr td a").attr('href');
 				var vars = href.split("?");
 					       href=vars[0];
 			
-				console.log(index);
+				
 				if(index>0){
 				$(".layui-table:eq(" + (index-1)+ ")").after($(".layui-table")[0].outerHTML);
 				}
@@ -94,18 +95,12 @@
 			};
 		  	
 		  	function getAnswerList() {
-			          
-	
-				// $(".layui-table").append($(".layui-table tbody"));
-		  // 		//	var usernameValue = $("#userId").val();
-		  	
+
 		  		instance.post('/college/news/list', {
 		  	
 		  			})
 		  			.then(function(response) {
-		  				//拿到school的name值
-		  				//	  usernameValue = response.data.rows[0].name;
-						
+
 		  				response.data.rows.forEach(qaList);
 		  			})
 		  			.catch(function(error) {

@@ -51,53 +51,28 @@
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/layui/layui.all.js"></script>
 		<script src="../../js/axios.js"></script>
+		<script src="../../js/config.js" ></script>
 		<script>
 				const instance = axios.create({
-					baseURL: 'http://127.0.0.1:80'
+					baseURL: "http://"+globalConfig.host+":"+globalConfig.port
 				});
 			
 				function collegeList(value, index, array) {
-					// if(index>0){
-					//  $(".school-profession:eq(" + (index-1)+ ")").after($(".school-profession")[0].outerHTML);
-					// }
-				//	$(".school-name span:eq(" + index + ")").text(value.name);
-					
-				//	$(".tt:eq(" + index+ ")" + " tr td a span").text(index);
-					
-					// var rowCount  = value.professionList.lenght/3;
-					// if(value.professionList%3 >0){
-					// 	rowCount++;
-					// }
-					// for(var i = 0; i<rowCount; i++){
-					// 	$(".tt:eq(" +index + ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").text(value.professionList[i%3].name);
-					// }
-				//	for( i=0;i<value.professionList.length;i++){
-						
-						
-					//	if(i<9){
-					//		console.log("i:"+i);
-					//	console.log("/:"+parseInt((i+1)/3));	
-					//	console.log("%:"+((i+1)%3-1));	
-				// $(".tt:eq(" + index+ ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").text(value.professionList[i].name);
-				// $(".tt:eq(" + index+ ")" + " tr:eq(" + parseInt((i+1)/3) + ")" + " td:eq(" + ((i+1)%3-1) + ") a").attr("href","detail.html?id="+value.professionList[i].id);
-							//$("tbody tr:eq(" + i<3?0:((i+1)/3) + ")" + "td:eq(" + i<3?i:((i+1)%3) + ")").text(value.professionList[i].name);
-				//		}
-			//		}	
+
 				};
 			
 				function getCollegeList() {
-			// $("#content div:eq(1)").append($("#txt").outerHTML);
 					var html =``;
 					instance.post('/college/school/list1', {
 						})
 						.then(function(response) {
-							console.log(11,response.data);
+							
 							for(let i=0;i<response.data.rows.length;i++){
-								console.log('school',response.data.rows[i]);
+								
 								let obj =response.data.rows[i];
 								let majoy =``;
 								for(let j=0;j<obj.professionList.length;j++){
-									console.log('majoy',obj.professionList[j]);
+									
 									let temp = obj.professionList[j];
 									if(temp!=''&&temp)
 									majoy+=`<div style="color:#666666;height:30px;float:left;width:30%;text-align: center;line-height: 30px;padding:5px;border:#e6e6e6 1px solid"><a href="detail.html?id=${temp.id}">${temp.name}</a></div>`
@@ -117,54 +92,13 @@
 										  </div> 	
 									  </div> 
 										  `
-							// $(".layui-card-body").append(buildTable(response.data.rows[i]));
 							}
 							document.getElementById("content").innerHTML=html;
-						// 	$(".school-profession:eq(" + (i-1)+ ")").after($(".school-profession")[0].outerHTML);
-						
-						// 	}
-							//response.data.rows.forEach(collegeList);
 						})
 						.catch(function(error) {
 							console.log(error);
 						});
 				};
-			//	function buildTable (college){
-					// var pros = college.professionList;
-					// console.log(pros);
-					// var count = pros.length;
-					// var rowCount  = parseInt(count/3);
-					// if(count%3 >0){
-					// 	rowCount++;
-					// }
-					// console.log('rowCount:'+rowCount);
-					// console.log('count%3:'+count%3);
-					// var table ='<table class="layui-table>"';
-					// table+='<tbody class="tt">'
-					// for(i =0;i<rowCount; i++){
-
-					// 	table+='<tr>';
-					// 	for(j = 0; j<count%3; j++){
-							
-					// 		if(college.professionList[i*3 + j]){
-					// 			console.log(college.professionList[i*3 + j]);
-					// 			console.log(college.professionList[i*3 + j].id);
-					// 			console.log(college.professionList[i*3 + j].name);
-					// 			table+='<td style="width: 29.519%; font-weight: lighter; font-size: 2px;">'
-					// 			table+='<a style="font-weight: lighter;" href="detail.html?id='+college.professionList[i*3 + j].id+'">';
-					// 			table += college.professionList[i*3 + j].name;
-					// 			table+='</a>'
-					// 			table+='</td>'
-					// 		}
-					// 	}
-						
-					// 	table+='</tr>'
-					// }
-					// table+='</tbody>'
-					// table+='</talbe>';
-					// console.log(table)
-					// return table;
-				//}
 				window.onload = getCollegeList();
 		</script>
 	</body>

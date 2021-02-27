@@ -70,10 +70,11 @@
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/layui/layui.all.js"></script>
 		<script src="../../js/axios.js"></script>
+		<script src="../../js/config.js" ></script>
 		<script>
 			var aValue = $("layui-breadcrumb a:eq(2)").text();
 			const instance = axios.create({
-				baseURL: 'http://127.0.0.1:80'
+				baseURL: "http://"+globalConfig.host+":"+globalConfig.port
 			});
 			//拿到url里面的id
 			function getQueryVariable(variable)
@@ -88,9 +89,9 @@
 						};
 						function getUrl(){
 							var id = getQueryVariable("id");
-							console.log(id);
+							
 							var url = window.location.href;
-							console.log(url);
+							
 							return id;
 						};
 						function getinfo(){
@@ -98,12 +99,12 @@
 							var id = getUrl();
 							instance.get('/college/profession/'+id,{
 												 proxy: {
-												    host: '127.0.0.1',
-												    port: 80
+												    host: globalConfig.host,
+												    port: globalConfig.port
 												  }
 												  
 							}).then(function (response) {
-								console.log(response.data.school);
+								
 							 $(".layui-breadcrumb a:eq(2)").text(response.data.school.name);
 							 $(".layui-breadcrumb a:eq(2)").attr("href","../college/college.html?id="+response.data.school.id);
 							$("#professionName").text(response.data.name);
