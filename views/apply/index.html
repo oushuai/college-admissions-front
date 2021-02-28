@@ -158,10 +158,11 @@
 		  </div>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/layui/layui.all.js"></script>
+		<script src="../../js/config.js" ></script>
 		<script src="../../js/axios.js"></script>
 		<script>
 			const instance = axios.create({
-				baseURL: 'http://127.0.0.1:80'
+				baseURL: "http://"+globalConfig.host+":"+globalConfig.port
 			});
 		//Demo
 		layui.use('form', function(){
@@ -203,7 +204,6 @@
 				function collegeList1(value, index, array) {
 					var schoolId=$("#schoolId").val();
 					if(schoolId==value.id){
-					   // $("#professionId").html("<option value=\"-1\">-请选择-</option>");
 					
 					    for(var i=0;i<value.professionList.length;i++){
 						if(i>0){
@@ -211,7 +211,7 @@
 						}
 							$("#professionId option:eq(" + i+ ")").text(value.professionList[i].name);
 							$("#professionId option:eq(" + i+ ")").attr("value",value.professionList[i].id);
-							 console.log(value.professionList[i].name);
+							 
 					 }
 					}	
 				}

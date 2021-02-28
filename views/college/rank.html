@@ -61,10 +61,11 @@
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/layui/layui.all.js"></script>
 		<script src="../../js/axios.js"></script>
+		<script src="../../js/config.js" ></script>
 		<script>
 			// axios.defaults.baseURI = 'http://127.0.0.1:80';
 			const instance = axios.create({
-				baseURL: 'http://127.0.0.1:80'
+				baseURL: "http://"+globalConfig.host+":"+globalConfig.port
 			});
 		
 			function collegeList(value, index, array) {

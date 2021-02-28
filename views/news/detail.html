@@ -74,8 +74,8 @@
 						var id = getUrl();
 						instance.get('/college/news/'+id,{
 											 proxy: {
-											    host: '127.0.0.1',
-											    port: 80
+											    host: globalConfig.host,
+											    port: globalConfig.port
 											  }
 											  
 						}).then(function (response) {
